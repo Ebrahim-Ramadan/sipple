@@ -28,12 +28,15 @@
 
       .app {
         width: 100vw;
-        height: 100vh;
+        height: 100dvh;
         margin: 0;
         padding: 0;
       }
 
       .card {
+        --btn-size: 64px;
+        --btn-bottom: 16px;
+        --meter-gap: 12px;
         width: 100%;
         height: 100%;
         margin: 0;
@@ -41,13 +44,13 @@
         border: 0;
         backdrop-filter: none;
         border-radius: 0;
-        padding: 0 0 84px;
+        padding: 0;
         position: relative;
         box-shadow: none;
         text-align: center;
         animation: app-enter 0.45s ease-out both;
         display: grid;
-        place-items: center;
+        place-items: start center;
       }
 
       h1,
@@ -58,13 +61,15 @@
 
       .body-wrap {
         width: 100%;
-        height: 100%;
+        height: calc(100% - var(--btn-size) - var(--btn-bottom) - var(--meter-gap));
         display: grid;
         place-items: center;
       }
 
       .body-meter {
-        width: min(72vw, 440px);
+        width: auto;
+        height: min(calc(100dvh - var(--btn-size) - var(--btn-bottom) - var(--meter-gap)), 88dvh);
+        max-width: min(72vw, 440px);
         aspect-ratio: 1 / 1.25;
         position: relative;
         overflow: hidden;
@@ -104,10 +109,10 @@
       .add-btn {
         position: absolute;
         left: 50%;
-        bottom: 16px;
+        bottom: var(--btn-bottom);
         transform: translateX(-50%);
-        width: 64px;
-        height: 64px;
+        width: var(--btn-size);
+        height: var(--btn-size);
         border: 0;
         border-radius: 50%;
         background: #0f8dff;
@@ -220,19 +225,14 @@
 
       @media (max-width: 768px) {
         .card {
-          padding: 0 0 96px;
+          --btn-size: 68px;
+          --btn-bottom: 18px;
+          --meter-gap: 10px;
         }
 
         .body-meter {
-          width: min(82vw, 420px);
+          max-width: min(86vw, 420px);
           aspect-ratio: 1 / 1.5;
-          max-height: 86vh;
-        }
-
-        .add-btn {
-          width: 68px;
-          height: 68px;
-          bottom: 18px;
         }
       }
 
