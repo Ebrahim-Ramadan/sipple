@@ -38,6 +38,7 @@
         position: relative;
         box-shadow: 0 20px 45px rgba(7, 49, 83, 0.2);
         text-align: center;
+        animation: app-enter 0.45s ease-out both;
       }
 
       h1 {
@@ -75,6 +76,10 @@
         height: 0%;
         background: linear-gradient(180deg, #2f9fff 0%, #1281f5 100%);
         transition: height 0.45s ease;
+      }
+
+      .body-meter.water-added {
+        animation: water-added 0.28s ease-out;
       }
 
       .water::before {
@@ -187,6 +192,41 @@
           opacity: 0.2;
         }
       }
+
+      @keyframes app-enter {
+        from {
+          opacity: 0;
+          transform: translateY(10px) scale(0.99);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @keyframes water-added {
+        0% {
+          transform: scale(1);
+        }
+        45% {
+          transform: scale(1.015);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .card,
+        .body-meter.water-added,
+        .emoji {
+          animation: none !important;
+        }
+
+        .water {
+          transition: none;
+        }
+      }
     </style>
   </head>
   <body>
@@ -232,6 +272,8 @@
       const sliderEl = document.getElementById("litresSlider");
       const litresValueEl = document.getElementById("litresValue");
       const celebrateEl = document.getElementById("celebrate");
+      const bodyMeterEl = document.querySelector(".body-meter");
+      const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
       function render() {
         const ratio = Math.min(consumedMl / GOAL_ML, 1);
@@ -270,6 +312,13 @@
         }
       }
 
+      function animateWaterAdded() {
+        if (reducedMotionQuery.matches) return;
+        bodyMeterEl.classList.remove("water-added");
+        void bodyMeterEl.offsetWidth;
+        bodyMeterEl.classList.add("water-added");
+      }
+
       document.getElementById("openAdd").addEventListener("click", () => setModalOpen(true));
       document.getElementById("cancel").addEventListener("click", () => setModalOpen(false));
 
@@ -282,6 +331,7 @@
         consumedMl += addMl;
         setModalOpen(false);
         render();
+        animateWaterAdded();
       });
 
       modalEl.addEventListener("click", (e) => {
