@@ -218,6 +218,24 @@
         }
       }
 
+      @media (max-width: 768px) {
+        .card {
+          padding: 0 0 96px;
+        }
+
+        .body-meter {
+          width: min(82vw, 420px);
+          aspect-ratio: 1 / 1.5;
+          max-height: 86vh;
+        }
+
+        .add-btn {
+          width: 68px;
+          height: 68px;
+          bottom: 18px;
+        }
+      }
+
       @media (prefers-reduced-motion: reduce) {
         .card,
         .body-meter.water-added,
