@@ -13,56 +13,59 @@
         box-sizing: border-box;
       }
 
+      html,
       body {
+        width: 100%;
+        height: 100%;
         margin: 0;
-        min-height: 100vh;
+      }
+
+      body {
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
         background: radial-gradient(circle at 20% 20%, #d7efff 0, #bde3ff 30%, #85c7ff 100%);
         color: #073153;
       }
 
       .app {
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
-        padding: 24px;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
       }
 
       .card {
-        width: min(430px, 100%);
+        width: 100%;
+        height: 100%;
+        margin: 0;
         background: rgba(255, 255, 255, 0.78);
-        border: 1px solid rgba(255, 255, 255, 0.55);
+        border: 0;
         backdrop-filter: blur(8px);
-        border-radius: 26px;
-        padding: 28px 24px 84px;
+        border-radius: 0;
+        padding: 0 0 84px;
         position: relative;
-        box-shadow: 0 20px 45px rgba(7, 49, 83, 0.2);
+        box-shadow: none;
         text-align: center;
         animation: app-enter 0.45s ease-out both;
+        display: grid;
+        place-items: center;
       }
 
-      h1 {
-        margin: 0 0 6px;
-      }
-
-      .subtitle {
-        margin: 0 0 18px;
-        color: #2f628a;
-      }
-
+      h1,
+      .subtitle,
       .goal {
-        margin: 0 0 18px;
-        font-weight: 700;
+        display: none;
       }
 
       .body-wrap {
+        width: 100%;
+        height: 100%;
         display: grid;
         place-items: center;
       }
 
       .body-meter {
-        width: 200px;
-        height: 360px;
+        width: min(70vw, 420px);
+        height: min(82vh, 760px);
         border: 4px solid #0f5d95;
         border-radius: 90px 90px 70px 70px;
         background: #f2f9ff;
@@ -94,9 +97,7 @@
       }
 
       .progress {
-        margin-top: 14px;
-        font-size: 1.1rem;
-        font-weight: 700;
+        display: none;
       }
 
       .add-btn {
@@ -104,8 +105,8 @@
         left: 50%;
         bottom: 16px;
         transform: translateX(-50%);
-        width: 52px;
-        height: 52px;
+        width: 64px;
+        height: 64px;
         border: 0;
         border-radius: 50%;
         background: #0f8dff;
